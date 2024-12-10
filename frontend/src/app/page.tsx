@@ -1,71 +1,44 @@
-// src/pages/HomePage.tsx
-"use client"
-import React, { useEffect, useState } from 'react';
-import Header from '../components/MainPage/Header';
-import HeroSection from '../components/MainPage/HeroSection';
-import FeaturedProjects from '../components/MainPage/FeaturedProjects';
-import FeaturesSection from '../components/MainPage/FeaturesSection';
-import TestimonialsSection from '../components/MainPage/TestimonialsSection';
-import FAQSection from '../components/MainPage/FAQSection';
-import ContactForm from '../components/MainPage/ContactForm';
-import Footer from '../components/MainPage/Footer';
-import AnimatedComponent from '../components/Efectos/AnimatedComponent';
-import AdminPanel from '../components/MainPage/AdminPanel';
+import React from 'react';
+import Header from '@/components/elements/Header';
+import HeroSection from '@/components/elements/HeroSection';
+import FeaturesSection from '@/components/elements/FeaturesSection';
+import Footer from '@/components/elements/Footer';
+import SlideInEffect from '@/components/effects/SlideInEffect'; // Importa los efectos
+import FadeInEffect from '@/components/effects/FadeInEffect';
+import ScaleUpEffect from '@/components/effects/ScaleUpEffect';
+import AnimatedComponent from '@/components/effects/AnimatedComponent';
+import MapComponent from '@/components/elements/MapComponent'; // Asegúrate de importar el MapComponent
 
-export default function HomePage() {
-  const [isAdminPanelOpen, setIsAdminPanelOpen] = useState(false);
-
-  useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent) => {
-      // Detectar la combinación de teclas Control + Alt + C
-      if (event.ctrlKey && event.altKey && event.key === 'c') {
-        setIsAdminPanelOpen(true);
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-    return () => {
-      window.removeEventListener('keydown', handleKeyDown);
-    };
-  }, []);
-
+const MainPage = () => {
   return (
     <div>
-      <Header />
-      <AnimatedComponent>
-        <section id="inicio">
-          <HeroSection />
-        </section>
-      </AnimatedComponent>
-      <AnimatedComponent>
-        <section id="features">
-          <FeaturesSection />
-        </section>
-      </AnimatedComponent>
-      <AnimatedComponent>
-        <section id="projects">
-          <FeaturedProjects />
-        </section>
-      </AnimatedComponent>
-      <AnimatedComponent>
-        <section id="testimonials">
-          <TestimonialsSection />
-        </section>
-      </AnimatedComponent>
-      <AnimatedComponent>
-        <section id="faq">
-          <FAQSection />
-        </section>
-      </AnimatedComponent>
-      <AnimatedComponent>
-        <section id="contact">
-          <ContactForm />
-        </section>
-      </AnimatedComponent>
-      <Footer />
+      <FadeInEffect>
+        <Header />
+      </FadeInEffect>
 
-      {/* Panel de configuración para administradores */}
-      {isAdminPanelOpen && <AdminPanel onClose={() => setIsAdminPanelOpen(false)} />}
+      <FadeInEffect>
+        <HeroSection />
+      </FadeInEffect>
+
+      <FadeInEffect>
+        <FeaturesSection />
+      </FadeInEffect>
+
+      {/* Sección del mapa */}
+      <FadeInEffect>
+        <section className="py-16 bg-gray-100">
+          <div className="container mx-auto text-center">
+            <h2 className="text-3xl font-semibold mb-8">Reporte ya!</h2>
+            <MapComponent /> {/* Muestra el mapa aquí */}
+          </div>
+        </section>
+      </FadeInEffect>
+
+      <FadeInEffect>
+        <Footer />
+      </FadeInEffect>
     </div>
   );
-}
+};
+
+export default MainPage;
