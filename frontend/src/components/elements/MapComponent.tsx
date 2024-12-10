@@ -12,7 +12,7 @@ const MapComponent: React.FC = () => {
 
   // Crear un icono personalizado
   const customIcon = new L.Icon({
-    iconUrl: '/path/to/custom-icon.png', // Ruta a tu icono
+    iconUrl: '/recourses/icons/marcador-de-posicion.png', // Ruta a tu icono
     iconSize: [32, 32], // Tamaño del icono
     iconAnchor: [16, 32], // Ancla del icono (donde se coloca en el marcador)
     popupAnchor: [0, -32], // Ancla del popup (ubicación del texto en relación al icono)
